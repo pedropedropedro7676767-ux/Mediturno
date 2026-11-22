@@ -1,0 +1,67 @@
+MEDITURNO - COMO ABRIR EL PROYECTO (Windows)
+=============================================
+
+SOLO LA PRIMERA VEZ (instalar 2 programas)
+------------------------------------------
+1) Node.js: entra a https://nodejs.org, baja el boton "LTS", instalalo (Siguiente, Siguiente...).
+2) XAMPP:   entra a https://www.apachefriends.org, bajalo e instalalo (Siguiente, Siguiente...).
+            IMPORTANTE: dejalo en la carpeta que propone por defecto (C:\xampp).
+3) Reinicia la computadora.
+
+CADA VEZ QUE QUIERAN USARLO
+---------------------------
+1) Descomprime el ZIP (clic derecho > Extraer todo). No lo abras desde dentro del ZIP.
+2) Doble clic en  INICIAR.bat
+   - Enciende MySQL solo, instala lo necesario la primera vez (necesita internet),
+     crea la base de datos y las tablas solo, y abre el navegador.
+   - Sale una ventana negra: NO LA CIERRES. Esa ventana ES el servidor.
+3) Listo: http://localhost:3000
+
+Para apagar todo: cierra la ventana negra (o Ctrl+C) y cierra la ventana de MySQL que quedo minimizada.
+
+CUENTAS DE PRUEBA
+-----------------
+Paciente:       paciente@mediturno.test   /  Paciente123*
+Doctora:        laura@mediturno.test      /  Doctor123*
+Administrador:  en "Ingresar" elijan "Administrador", escriban  admin@mediturno.test
+                y presionen "Enviarme un codigo". El codigo de 6 digitos APARECE EN LA
+                VENTANA NEGRA (no llega a ningun correo). Escribanlo y entren.
+Doctor nuevo:   "Crear cuenta" > Doctor. Queda en revision hasta que el administrador lo
+                apruebe (Administracion > Solicitudes de doctores).
+
+VERLO EN EL CELULAR
+-------------------
+1) El celular y la computadora deben estar en el MISMO Wi-Fi.
+2) En la ventana negra, abajo, dice "En el CELULAR abre una de estas direcciones".
+   Escriban esa direccion en el navegador del celular (casi siempre empieza con 192.168).
+3) Si no abre: clic derecho en PERMITIR_CELULAR.bat > "Ejecutar como administrador" (una sola vez)
+   y vuelvan a intentar.
+4) Si el Wi-Fi de la escuela no deja (algunas redes bloquean que los aparatos se vean entre si):
+   activen "Compartir internet / Punto de acceso" en el celular, conecten la computadora a ese
+   Wi-Fi, reinicien INICIAR.bat y usen la nueva direccion que salga.
+
+VER LA BASE DE DATOS (para la exposicion)
+-----------------------------------------
+Abran XAMPP Control Panel y den Start a Apache. Luego http://localhost/phpmyadmin > base "mediturno".
+
+DONDE CAMBIAR CADA COSA
+-----------------------
+Pagina (textos, secciones, formularios) ... public/index.html
+Colores, tamanos, diseño celular .......... public/css/estilos.css
+Botones, formularios, validaciones ........ public/js/app.js
+Que hace el servidor (guardar, borrar...) . servidor/rutas/*.js
+Conexion y datos de prueba ................ servidor/configuracion/
+Tablas de la base de datos ................ database/esquema.sql
+Datos de conexion a MySQL ................. .env
+
+Si cambian algo en public/ (index.html, css, js): solo recarguen la pagina (F5).
+Si cambian algo en servidor/ o database/: cierren la ventana negra y abran INICIAR.bat otra vez.
+
+SI ALGO FALLA
+-------------
+- "Falta Node.js"/"No encuentro MySQL": instalen lo del paso "Solo la primera vez" y reinicien la compu.
+- "No se pudo preparar la base de datos": MySQL no encendio. Abran XAMPP Control Panel, den Start a MySQL
+  y abran INICIAR.bat otra vez. Si dice que el puerto 3306 esta ocupado, cierren otros MySQL.
+- Si su MySQL tiene contrasena: escribanla en .env, en la linea DB_CONTRASENA=
+- Para borrar todos los datos y empezar de cero: en phpMyAdmin borren la base "mediturno" y abran INICIAR.bat.
+- NO suban el archivo .env a GitHub (ya esta ignorado en .gitignore).

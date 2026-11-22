@@ -1,0 +1,9 @@
+{
+  "name": "mediturno",
+  "version": "1.0.0",
+  "description": "MediTurno: sistema de citas médicas (Node.js + MySQL)",
+  "main": "servidor/servidor.js",
+  "scripts": { "start": "node servidor/servidor.js" },
+  "engines": { "node": ">=18" },
+  "dependencies": { "mysql2": "^3.9.0" }
+}

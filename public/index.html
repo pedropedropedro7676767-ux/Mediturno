@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0E6E78">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>MediTurno · Citas médicas</title>
+<link rel="icon" href="imagenes/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=Outfit:wght@500;700;800&display=swap">
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+<header class="barra">
+  <a class="marca" href="#" data-ir="inicio"><img src="imagenes/logo.svg" alt="" width="34" height="34">MediTurno</a>
+  <button id="menuBtn" class="hamb" aria-label="Abrir menú" aria-expanded="false" hidden>☰</button>
+  <nav id="menu"></nav>
+</header>
+
+<main>
+  <!-- 1. INICIO DE SESIÓN -->
+  <section id="acceso" class="vista">
+    <div class="acc-lado">
+      <div><h1>Tu salud, a un turno de distancia.</h1><p>Entra para pedir tu cita, revisar tu agenda o administrar la clínica.</p></div>
+      <div class="ticket" aria-hidden="true"><small>Tu turno</small><strong>10:00</strong><span>Solicitud enviada · en revisión</span></div>
+    </div>
+    <div class="acc-form">
+      <div class="tabs"><button class="tab act" data-a="panel" data-p="login">Ingresar</button><button class="tab" data-a="panel" data-p="reg">Crear cuenta</button></div>
+      <!-- INICIAR SESIÓN: cuentas que ya existen (paciente, doctor y administrador) -->
+      <form id="p-login" class="panel form" data-f="login">
+        <label>Tipo de cuenta
+          <select name="acceso" id="acceso-tipo"><option value="normal">Paciente o doctor</option><option value="admin">Administrador</option></select></label>
+        <label>Correo <input type="email" name="email" autocomplete="username" required></label>
+        <label id="lbPass">Contraseña <input type="password" name="pass" autocomplete="current-password" required></label>
+        <label id="lbCodigo" hidden>Código de 6 dígitos (revisa tu correo) <input name="codigo" inputmode="numeric" maxlength="6"></label>
+        <button class="btn" id="btnLogin">Entrar</button><p class="msg" role="status"></p>
+      </form>
+      <!-- REGISTRO: cuentas nuevas (solo paciente o doctor; el doctor necesita aprobación del administrador) -->
+      <form id="p-reg" class="panel form" data-f="reg" hidden>
+        <label>Quiero registrarme como
+          <select name="tipo" id="tipoReg"><option value="paciente">Paciente</option><option value="doctor">Doctor</option></select></label>
+        <label>Nombre <input name="nombre" required></label>
+        <label>Correo <input type="email" name="email" required></label>
+        <label>Teléfono (WhatsApp) <input name="tel" inputmode="numeric"></label>
+        <label id="lbEsp" hidden>Especialidad <input name="esp"></label>
+        <label>Contraseña (mínimo 6) <input type="password" name="pass" minlength="6" required></label>
+        <p id="notaDoc" class="nota" hidden>Los doctores deben ser aprobados por el administrador. Podrás iniciar sesión cuando lo haga.</p>
+        <button class="btn sec">Crear cuenta</button><p class="msg" role="status"></p>
+      </form>
+      <details><summary>Cuentas de prueba</summary><p>Doctora: laura@mediturno.test / Doctor123*<br>Paciente: paciente@mediturno.test / Paciente123*<br>Administrador: elige "Administrador", escribe el correo del equipo y te llega un código.</p></details>
+    </div>
+  </section>
+
+  <!-- 2. BIENVENIDA Y PRIMERA IMPRESIÓN -->
+  <section id="inicio" class="vista" hidden>
+    <div class="hero"><span class="blob b1"></span><span class="blob b2"></span><div class="cont" id="heroI"></div></div>
+    <div class="banda"><div class="cont"><h2>Tu resumen</h2><div id="cifrasI"></div></div></div>
+    <div class="banda menta"><div class="cont"><h2>Nuestros doctores</h2><div id="destacados" class="rejilla"></div></div></div>
+    <div class="banda"><div class="cont"><h2>Preguntas frecuentes</h2>
+      <div class="faq">
+        <details><summary>¿Mi cita queda confirmada al enviarla?</summary><p>No. Es una solicitud: el doctor la revisa y te avisa si la acepta o la rechaza.</p></details>
+        <details><summary>¿Puedo cambiar o cancelar mi cita?</summary><p>Sí, desde “Mis citas” mientras esté pendiente o aprobada.</p></details>
+        <details><summary>¿Cómo sé si aceptaron mi cita?</summary><p>Lo ves en tus notificaciones y te llega un correo.</p></details>
+        <details><summary>¿El asistente puede darme un diagnóstico?</summary><p>No. Solo resuelve dudas del sistema. En una urgencia, acude a un hospital.</p></details>
+      </div></div></div>
+    <div class="banda noche"><div class="cont contacto" id="contactoI"></div></div>
+  </section>
+
+  <!-- 3. AGENDA DE CITAS -->
+  <section id="agenda" class="vista" hidden>
+    <h2 id="agTitulo">Agenda de citas</h2>
+    <div id="formCitaCont"></div><div id="filtroCont"></div><div id="tablaCitas"></div>
+  </section>
+  <!-- 4. DOCTORES -->
+  <section id="doctores" class="vista" hidden><h2>Nuestros doctores</h2><div id="filtroDoc" class="filtros"></div><div id="listaDoc" class="rejilla"></div></section>
+  <!-- 5. MI HORARIO (doctor) -->
+  <section id="horario" class="vista" hidden><h2>Mi horario</h2><div id="horarioCont"></div></section>
+  <!-- 6. ADMINISTRACIÓN (administrador) -->
+  <section id="admin" class="vista" hidden><h2>Administración</h2><div id="adminCont"></div></section>
+  <!-- 7. MI CUENTA -->
+  <section id="cuenta" class="vista" hidden><h2>Mi cuenta</h2><div id="cuentaCont"></div></section>
+</main>
+
+<footer><div class="cont pie"><div><b>MediTurno</b><p>Sistema de reservación y citas médicas.</p></div><div><b>Aviso</b><p>No sustituye una consulta. En urgencias, acude a un hospital.</p></div></div></footer>
+
+<div id="toast" class="toast" role="status" hidden></div>
+<button id="chatAbrir" class="chatbtn" aria-label="Abrir asistente">💬 Asistente</button>
+<aside id="chat" class="chat" hidden>
+  <div class="chatcab">Asistente MediTurno <button id="chatCerrar" aria-label="Cerrar">×</button></div>
+  <div id="chatLog" class="chatlog"></div>
+  <form id="chatForm"><input id="chatTxt" placeholder="Escribe tu pregunta" autocomplete="off"><button class="btn">Enviar</button></form>
+</aside>
+
+<script src="js/app.js"></script>
+</body>
+</html>
