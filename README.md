@@ -2,10 +2,10 @@
 
 **Trabajo final integrador · Desarrollo Web**
 
-- **Integrantes:** _(escribe aquí los nombres del equipo)_
-- **Grupo:** _(escribe aquí tu grupo)_
-- **Sistema publicado:** _(pega aquí el enlace de la aplicación publicada)_
-- **Repositorio:** _(pega aquí el enlace de GitHub)_
+- **Integrantes:** Diego Raydel De la Cruz Garcia, Mateo Márquez García, Luis Angel Perez Lopez, Daniel de Jesus Espinoza Morales, Luis Angel Caro Ramirez
+- **Grupo:** 502-B
+- **Sistema publicado:** 
+- **Repositorio:** https://github.com/pedropedropedro7676767-ux/Mediturno
 
 ## Objetivo
 Permitir que los pacientes pidan citas médicas por internet, que los doctores las acepten o rechacen y que el administrador controle la clínica.
@@ -80,4 +80,7 @@ Contraseñas guardadas con hash (scrypt) · consultas con parámetros (contra in
 Se utilizó IA (Claude) como apoyo para desarrollar, depurar y documentar el proyecto, y el sistema incluye un chatbot con IA. El equipo revisó y comprende el código incorporado.
 
 ## Evidencia gráfica
-_(agrega aquí capturas del sistema funcionando)_
+![AceptarCita](aceptarcita.jpg)
+![AceptarDoctor](aceptardoctor.jpg)
+![PeticionDeCita](peticiondecita.jpg)
+![ServidorLocal](servidorlocal.jpg)
